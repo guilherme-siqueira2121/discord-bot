@@ -7,7 +7,7 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 
 import com.bot.discordbot.commands.PingCommand;
 import com.bot.discordbot.commands.NukarCommand;
-import com.bot.discordbot.events.WelcomeListener;
+import com.bot.discordbot.events.LogListener;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -17,9 +17,13 @@ public class Main {
         JDA jda = JDABuilder.createDefault(token)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .enableIntents(GatewayIntent.GUILD_MEMBERS)
+                .enableIntents(GatewayIntent.GUILD_MESSAGES)
+                .enableIntents(GatewayIntent.GUILD_MODERATION)
+                .enableIntents(GatewayIntent.GUILD_MESSAGE_REACTIONS)
+
                 .addEventListeners(new PingCommand())
                 .addEventListeners(new NukarCommand())
-                .addEventListeners(new WelcomeListener())
+                .addEventListeners(new LogListener())
                 .build();
 
         jda.updateCommands()

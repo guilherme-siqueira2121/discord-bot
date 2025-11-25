@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class PingCommand extends ListenerAdapter {
 
+    // entrada 'ping' saída 'pong'
     @Override
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
 

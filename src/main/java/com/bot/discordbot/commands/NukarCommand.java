@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class NukarCommand extends ListenerAdapter {
 
+    // deleta 100 mensagens
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         if (!event.getName().equals("nukar")) return;
@@ -15,6 +16,7 @@ public class NukarCommand extends ListenerAdapter {
             event.getChannel().purgeMessages(messages);
         });
 
+        // repete nukar 10x
         for (int i = 0; i < 10; i++) {
             event.getChannel().getHistory().retrievePast(100).queue(messages -> {
                 event.getChannel().purgeMessages(messages);
