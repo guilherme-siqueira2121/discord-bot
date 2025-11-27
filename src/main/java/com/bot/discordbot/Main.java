@@ -1,7 +1,10 @@
 package com.bot.discordbot;
 
+import com.bot.discordbot.listeners.BadWordsFilter;
+
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
@@ -24,12 +27,17 @@ public class Main {
                 .addEventListeners(new PingCommand())
                 .addEventListeners(new NukarCommand())
                 .addEventListeners(new LogListener())
+
+                .addEventListeners(new BadWordsFilter())
                 .build();
 
         jda.updateCommands()
                 .addCommands(
                         Commands.slash("ping", "Responde com Pong!"),
-                        Commands.slash("nukar", "Apaga 1000 mensagens do canal atual!")
+                        Commands.slash("nukar", "Apaga 1000 mensagens do canal atual!"),
+                        Commands.slash("ban", "Bane um usuário do servidor")
+                            .addOption(OptionType.USER, "user", "Usuário a ser banido", true)
+                            .addOption(OptionType.STRING, "motivo", "Motivo", false)
                 )
                 .queue();
 
