@@ -1,4 +1,4 @@
-package com.bot.discordbot.events;
+package com.bot.discordbot.listeners;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
@@ -7,7 +7,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import java.awt.*;
 
-public class LogListener extends ListenerAdapter {
+public class WelcomeAndGoodbye extends ListenerAdapter {
 
     private final String welcomeChannelId = "1442909201642033212";
     private final String exitChannelId = "1442909243236946031";

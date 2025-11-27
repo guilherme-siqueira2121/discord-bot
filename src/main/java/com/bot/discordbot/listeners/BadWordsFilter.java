@@ -45,7 +45,8 @@ public class BadWordsFilter extends ListenerAdapter {
 
                 event.getMessage().delete().queue();
 
-                int warns = PunishmentManager.addWarn(member.getId());
+                WarnManager.addWarn(member.getId());
+                int warns = WarnManager.getWarns(member.getId());
 
                 event.getChannel().sendMessage(
                         "⚠️ **" + member.getEffectiveName() + "**, Gehirn removeu um mensagem. Advertência **" + warns + "/7**."
@@ -80,6 +81,9 @@ public class BadWordsFilter extends ListenerAdapter {
     private void applyPunishment(MessageReceivedEvent event, net.dv8tion.jda.api.entities.Member member, int warns) {
 
         switch (warns) {
+
+            // warn de aviso
+            case 1 -> event.getChannel().sendMessage("⚠️ 1/7 Warn para " + member.getAsMention()).queue();
 
             case 3 -> {
                 // muta o usuário por 10 minutos
